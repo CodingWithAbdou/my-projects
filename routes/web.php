@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,6 @@ Auth::routes();
 Route::resource('/projects'  , ProjectController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/projects/{project}/tasks/create' , [TaskController::class , 'store']);
+Route::patch('/projects/{project}/tasks/{task}' , [TaskController::class , 'update']);

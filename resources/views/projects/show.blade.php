@@ -50,6 +50,36 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-8">
+            @foreach ($project->tasks as $task)
+            <div class="card my-2 p-2 ">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        {{$task->body}}
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <form action="/projects/{{$project->id}}/tasks/{{$task->id}}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <input type="checkbox" name="done" {{$task->done  ? 'checked':'' }} onchange="this.form.submit()" >
+                        </form>
+                        <button>
+                            <img src="/images/trash.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <div class="card mb-2 p-2" >
+                <form action="/projects/{{$project->id}}/tasks/create" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="body" name="body" placeholder="Create Task">
+                        <button class="btn btn-primary">أضف مهمة جديدة</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
 
 @endsection
