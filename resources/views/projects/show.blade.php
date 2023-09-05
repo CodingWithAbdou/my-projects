@@ -6,7 +6,7 @@
         </div>
 
         <div>
-            <a href="/projects/{{$project->id}}" class="btn btn btn-primary">تعديل المشروع</a>
+            <a href="/projects/{{$project->id}}/edit" class="btn btn btn-primary">تعديل المشروع</a>
         </div>
     </header>
 
@@ -17,7 +17,7 @@
                     @switch($project->status)
                         @case(1)
                             <div class="text-success">
-                                تم بنجاح
+                                منجز
                             </div>
                             @break
                         @case(2)
@@ -50,11 +50,12 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-8">
             @foreach ($project->tasks as $task)
             <div class="card my-2 p-2 ">
                 <div class="d-flex align-items-center justify-content-between">
-                    <div>
+                    <div class="{{$task->done ? 'checked' : ''}}">
                         {{$task->body}}
                     </div>
                     <div class="d-flex align-items-center gap-2">
@@ -63,19 +64,22 @@
                             @method('PATCH')
                             <input type="checkbox" name="done" {{$task->done  ? 'checked':'' }} onchange="this.form.submit()" >
                         </form>
-                        <button>
-                            <img src="/images/trash.svg" alt="">
-                        </button>
+                        <form action="/projects/{{$project->id}}/tasks/{{$task->id}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class=""><img src="/images/trash.svg" alt="trash icon"></button>
+                        </form>
                     </div>
                 </div>
             </div>
             @endforeach
+
             <div class="card mb-2 p-2" >
                 <form action="/projects/{{$project->id}}/tasks/create" method="POST">
                     @csrf
-                    <div class="mb-3">
+                    <div class="mb-3 d-flex ">
                         <input type="text" class="form-control" id="body" name="body" placeholder="Create Task">
-                        <button class="btn btn-primary">أضف مهمة جديدة</button>
+                        <button class="btn btn-primary ">أضف مهمة</button>
                     </div>
                 </form>
             </div>

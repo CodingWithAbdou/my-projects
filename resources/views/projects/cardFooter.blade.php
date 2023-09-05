@@ -7,10 +7,12 @@
     </div>
     <div  class="mx-2">
         <img src="/images/list.svg" alt="list icon">
+        {{ count($project->tasks) }}
+
     </div>
 
     <div class="me-auto">
-        <form action="/projects/{project}" method="POST">
+        <form action="/projects/{{$project->id}}" method="POST">
             @method('DELETE')
             @csrf
             <button class=""><img src="/images/trash.svg" alt="trash icon"></button>

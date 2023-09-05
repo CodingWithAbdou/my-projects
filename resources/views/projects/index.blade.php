@@ -18,7 +18,7 @@
                             @switch($project->status)
                                 @case(1)
                                     <div class="text-success">
-                                        تم بنجاح
+                                        منجز
                                     </div>
                                     @break
                                 @case(2)
