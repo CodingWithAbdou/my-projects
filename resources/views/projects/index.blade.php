@@ -10,7 +10,7 @@
             </div>
         </header>
 
-        <div class="row">
+        <section class="row">
             @forelse ($projects as $project)
                 <div class="col-4 mb-2">
                     <div class="card  ">
@@ -31,7 +31,7 @@
                                         قيد التنفيذ
                                     </div>
                             @endswitch
-                            <h5 class="card-title">{{ $project->title }}</h5>
+                            <a href="/projects/{{$project->id}}"><h5 class="card-title">{{ $project->title }}</h5></a>
                             <p> {{ Str::limit($project->description , 150) }}</p>
                             @include('projects.cardFooter')
                         </div>
@@ -43,5 +43,5 @@
                     <a href="/projects/create" class="btn btn-primary">أنشء مشروعا جديدا</a>
                 </div>
             @endforelse
-        </div>
+        </section>
 @endsection
