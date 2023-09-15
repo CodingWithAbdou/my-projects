@@ -12,7 +12,7 @@
 
         <section class="row">
             @forelse ($projects as $project)
-                <div class="col-4 mb-2">
+                <div class="col-sm-6  col-lg-4 col-xl-3 mb-2 ">
                     <div class="card  ">
                         <div class="card-body">
                             @switch($project->status)

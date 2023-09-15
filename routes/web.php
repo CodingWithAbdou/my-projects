@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/projects/{project}/tasks/create' , [TaskController::class , 'store']);
 Route::patch('/projects/{project}/tasks/{task}' , [TaskController::class , 'update']);
 Route::delete('/projects/{project}/tasks/{task}' , [TaskController::class , 'destroy']);
+
+
+Route::get('/profile' , [ProfileController::class , 'index'])->middleware('auth');
+
+Route::patch('/profile' , [ProfileController::class , 'update']);
